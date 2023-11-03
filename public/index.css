@@ -584,15 +584,19 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+.h-52 {
+  height: 13rem;
 }
 
-.font-bold {
-  font-weight: 700;
+.w-52 {
+  width: 13rem;
 }
 
-.underline {
-  text-decoration-line: underline;
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.bg-emerald-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(16 185 129 / var(--tw-bg-opacity));
 }
