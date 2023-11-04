@@ -12,7 +12,5 @@ const docSlice = createSlice({
 
 // Selectors
 export const selectAllDocs = state => state.doc
-
-
 export default docSlice.reducer
 export const { addDoc } = docSlice.actions

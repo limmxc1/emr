@@ -2,7 +2,9 @@ import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
 import Sidebar from './features/sidebar/Sidebar';
 import Tabs from './features/Tabs';
+import Form from './components/Form';
 const store = configureStore();
+
 
 function App() {
   return (
@@ -15,7 +17,10 @@ function App() {
           <div className='grid grid-rows-7 h-screen'>
               <div className='grid row-span-1'></div>
               <div className='grid row-span-6'>
-                <Tabs />
+                <div className='flex-row'>
+                  <Tabs />
+                  <Form />
+                </div>
               </div>
           </div>
         </div>

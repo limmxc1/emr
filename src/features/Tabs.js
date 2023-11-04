@@ -1,7 +1,7 @@
 import React from "react"
 
 function Tabs() {
-    const navItems = ["Dashboard", "Progress Notes"]
+    const navItems = ["Doctor", "Nursing", "PT", "OT", "SLT"]
     return (
         <nav>
             <ul className='border-transparent rounded'>
@@ -9,13 +9,12 @@ function Tabs() {
                 return (
                     <li className='
                         px-3
-                        py-3
+                        py-1
                         inline 
                         hover:border-transparent
                         hover:bg-[#FF8787] 
                         hover:rounded
                         hover:text-white
-                        ease-in duration-300
                     '>
                         {item}
                     </li>
