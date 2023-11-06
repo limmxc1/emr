@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultState = {
-    ptNotes: {
+    ptNotes: [{
         goal: "",
         plan: "",
         discharge: ""
-    }
+    }]
 }
 
 const ptSlice = createSlice({
@@ -13,7 +13,7 @@ const ptSlice = createSlice({
     initialState: defaultState,
     reducers: {
         addPtDoc: (state, action) => {
-            state.ptNotes = action.payload
+            state.ptNotes.push(action.payload)
         },
     }
 })

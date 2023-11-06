@@ -1,18 +1,12 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import professionsInTeam from "../constants/professionsInTeam"
 
 function Tabs() {
-    const navItems = [
-        { header: "Doctor", path: "/doc" },
-        { header: "Nursing", path: "/nurse" },
-        { header: "PT", path: "/pt" },
-        { header: "OT", path: "/ot" },
-        { header: "SLT", path: "SLT"}
-    ]
     return (
         <nav>
             <ul className='border-transparent rounded'>
-                {navItems.map(item => {
+                {professionsInTeam.map(item => {
                 return (
                     <Link to={item.path}>
                         <button className='

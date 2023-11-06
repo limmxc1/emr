@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import professionsInTeam from '../constants/professionsInTeam'
 
 function SidebarInfo() {
     let medicalInfo = {
@@ -9,14 +10,16 @@ function SidebarInfo() {
         discharge: [],
     }
 
-    const state = useSelector(state => state)    
-    medicalInfo.goals.push('Doctor: ' + state.doc.docNotes.goal)
-    medicalInfo.plans.push('Doctor: ' + state.doc.docNotes.plan)
-    medicalInfo.goals.push('PT: ' + state.pt.ptNotes.goal)
-    medicalInfo.plans.push('PT: ' + state.pt.ptNotes.plan)
-    medicalInfo.discharge.push('Doctor: ' + state.doc.docNotes.discharge)
-    medicalInfo.discharge.push('PT: ' + state.pt.ptNotes.discharge)
-   
+    const state = useSelector(state => state)
+    function updateMedicalInfo() {
+        professionsInTeam.map(profession => {
+            const arrLength = state[profession.abbrev][`${profession.abbrev}Notes`].length-1
+            medicalInfo.goals.push(profession.header + ': ' + state[profession.abbrev][`${profession.abbrev}Notes`][arrLength].goal)
+            medicalInfo.plans.push(profession.header + ': ' + state[profession.abbrev][`${profession.abbrev}Notes`][arrLength].plan)
+            medicalInfo.discharge.push(profession.header + ': ' + state[profession.abbrev][`${profession.abbrev}Notes`][arrLength].discharge)
+        })
+    }
+    updateMedicalInfo()
     return (
         medicalInfo.allComponents.map(component => {
             const cappedComponent = component.charAt(0).toUpperCase() + component.slice(1)
