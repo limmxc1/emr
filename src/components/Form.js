@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { addDoc } from '../store/docSlice'
 import { useDispatch } from 'react-redux';
 
-function Form() {
+function Form({slice}) {
     const dispatch = useDispatch()
     const [state, setState] = useState({
         progressNote: "",
@@ -19,15 +18,17 @@ function Form() {
     }
     function handleClick(e) {
         e.preventDefault()
-        dispatch(addDoc({ name: "Hello"}))
+        dispatch(slice(state))
     }
-
-    function createProgressNote() {
-        return components.map(component => {
+    const sections = ["progressNote", "goal", "plan", "discharge"]
+    
+    function createProgressNote(sectionsArg) {
+        return sectionsArg.map(section => {
+            const sectionCapped = section.charAt(0).toUpperCase() + section.slice(1)
             return (
                 <>
-                    <label for={component} className='block'>{component}</label>
-                    <textarea id={component} rows="4" onChange={handleChange} className="
+                    <label for={section} className='block'>{sectionCapped}</label>
+                    <textarea id={section} rows="4" onChange={handleChange} className="
                     block
                     w-full 
                     text-sm
@@ -37,10 +38,9 @@ function Form() {
         )
     }
     console.log(state)
-    const components = ["progressNote", "goals", "plan", "discharge"]
     return (
-        <div className='bg-emerald-50'>
-            {createProgressNote()}
+        <div className= 'pl-2 pt-3'>
+            {createProgressNote(sections)}
             <button className='border border-black bg-cyan-500' onClick={handleClick}>Submit</button>
         </div>
     )

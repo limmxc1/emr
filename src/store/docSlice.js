@@ -1,11 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const defaultState = {
+    docNotes: {
+        goal: "",
+        plan: ""   
+    }
+}
+
 const docSlice = createSlice({
-    name: "docs",
-    initialState: [],
+    name: "docDocs",
+    initialState: defaultState,
     reducers: {
-        addDoc: (state, action) => {
-            state.push(action.payload)
+        addDocDoc: (state, action) => {
+            state.docNotes = action.payload
         },
     }
 })
@@ -13,4 +20,5 @@ const docSlice = createSlice({
 // Selectors
 export const selectAllDocs = state => state.doc
 export default docSlice.reducer
-export const { addDoc } = docSlice.actions
+export const { addDocDoc } = docSlice.actions
+console.log(docSlice)

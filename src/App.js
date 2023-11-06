@@ -3,6 +3,8 @@ import { Provider } from 'react-redux';
 import Sidebar from './features/sidebar/Sidebar';
 import Tabs from './features/Tabs';
 import Form from './components/Form';
+import { addDocDoc } from './store/docSlice';
+import { addPtDoc } from './store/ptSlice';
 const store = configureStore();
 
 
@@ -19,7 +21,8 @@ function App() {
               <div className='grid row-span-6'>
                 <div className='flex-row'>
                   <Tabs />
-                  <Form />
+                  <Form slice={addDocDoc}/>
+                  <Form slice={addPtDoc}/>
                 </div>
               </div>
           </div>
