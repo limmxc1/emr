@@ -1,24 +1,22 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import professionsInTeam from '../constants/professionsInTeam'
 
 function SidebarInfo() {
     let medicalInfo = {
-        allComponents: ['goals', 'plans', 'discharge', 'precautions'],
+        allComponents: ['goals', 'plans', 'discharge'],
         goals: [],
         plans: [],
-        discharge: ['Doctor: No', 'Nursing: Yes', 'PT: No', 'OT: Yes'],
-        precautions: ['L LL NWB']
+        discharge: [],
     }
-
 
     const state = useSelector(state => state)    
     medicalInfo.goals.push('Doctor: ' + state.doc.docNotes.goal)
     medicalInfo.plans.push('Doctor: ' + state.doc.docNotes.plan)
     medicalInfo.goals.push('PT: ' + state.pt.ptNotes.goal)
     medicalInfo.plans.push('PT: ' + state.pt.ptNotes.plan)
+    medicalInfo.discharge.push('Doctor: ' + state.doc.docNotes.discharge)
+    medicalInfo.discharge.push('PT: ' + state.pt.ptNotes.discharge)
    
-
     return (
         medicalInfo.allComponents.map(component => {
             const cappedComponent = component.charAt(0).toUpperCase() + component.slice(1)

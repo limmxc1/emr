@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const defaultState = {
     docNotes: {
         goal: "",
-        plan: ""   
+        plan: "",
+        discharge: ""
     }
 }
 

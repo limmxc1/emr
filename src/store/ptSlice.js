@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const defaultState = {
     ptNotes: {
         goal: "",
-        plan: ""   
+        plan: "",
+        discharge: ""
     }
 }
 

@@ -1,8 +1,9 @@
 import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
+import { Routes, Route } from "react-router-dom";
 import Sidebar from './features/sidebar/Sidebar';
 import Tabs from './features/Tabs';
-import Form from './components/Form';
+import ProgressNotes from './components/ProgressNote';
 import { addDocDoc } from './store/docSlice';
 import { addPtDoc } from './store/ptSlice';
 const store = configureStore();
@@ -21,8 +22,10 @@ function App() {
               <div className='grid row-span-6'>
                 <div className='flex-row'>
                   <Tabs />
-                  <Form slice={addDocDoc}/>
-                  <Form slice={addPtDoc}/>
+                  <Routes>
+                    <Route path="/doc" element={<ProgressNotes slice={addDocDoc}/>}/>
+                    <Route path="/pt" element={<ProgressNotes slice={addPtDoc}/>}/>
+                  </Routes>
                 </div>
               </div>
           </div>
