@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-
-function Form({slice}) {
+import { useParams } from 'react-router-dom';
+function ProgressNote({slice}) {
     const dispatch = useDispatch()
+    const { id } = useParams()
     const [state, setState] = useState({
         progressNote: "",
         plan: "",
@@ -43,6 +44,7 @@ function Form({slice}) {
     console.log(state)
     return (
         <div className= 'pl-2 pr-2 pt-3'>
+            <div>{id}</div>
             {createProgressNote(sections)}
             <p className='text-xs pt-2'>Discharge?</p>
                 <div>
@@ -72,4 +74,4 @@ function Form({slice}) {
         </div>
     )
 }
-export default Form
+export default ProgressNote

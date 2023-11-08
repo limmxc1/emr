@@ -6,9 +6,9 @@ function Tabs() {
     return (
         <nav>
             <ul className='border-transparent rounded'>
-                {professionsInTeam.map(item => {
+                {professionsInTeam.map(profession => {
                 return (
-                    <Link to={item.path}>
+                    <Link to={'/newDoc/' + profession.abbrev}>
                         <button className='
                             px-3
                             py-1
@@ -23,7 +23,7 @@ function Tabs() {
                             target:rounded
                             target:text-white
                         '>
-                            {item.header}
+                            {profession.header}
                         </button>
                     </Link>
                 )
