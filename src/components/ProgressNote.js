@@ -13,18 +13,13 @@ function ProgressNote({slice}) {
         discharge: "",
     })
     
-    useEffect(() => {
-        dispatch(slice(state))
-    }, [state])
-
-
 
     function handleChange(e) {
         const val = e.target.value
         const id = e.target.id
         setState(prevState => ({
             ...prevState,
-            [id]: val
+            [id]: val,
         }))
     }
 
@@ -35,7 +30,18 @@ function ProgressNote({slice}) {
             submitDate: d.toLocaleDateString(),
             submitTime: d.toLocaleTimeString()
         }))
+        console.log(state)
+        dispatch(slice(state))
     }
+
+    function addTimeAndDate() {
+        setState(prevState => ({
+            ...prevState,
+            submitDate: d.toLocaleDateString(),
+            submitTime: d.toLocaleTimeString()
+        }))
+    }
+
     const sections = ["progressNote", "goal", "plan"]
     
     function createProgressNote(sectionsArg) {
@@ -55,7 +61,6 @@ function ProgressNote({slice}) {
             )}
         )
     }
-    console.log(state)
     return (
         <div className= 'pl-2 pr-2 pt-3'>
             <div>{id}</div>
@@ -84,7 +89,7 @@ function ProgressNote({slice}) {
                     ></input>
                     <label htmlFor="dischargeNo" className='text-xs pl-1'>No</label>
                 </div>
-            <button className='block border bg-sky-950 text-slate-300 p-1 rounded text-xs mt-2' onClick={handleSubmit}>Submit</button>
+                <button className='block border bg-sky-950 text-slate-300 p-1 rounded text-xs mt-2' onMouseDown={addTimeAndDate} onClick={handleSubmit}>Submit</button>
         </div>
     )
 }
