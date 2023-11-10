@@ -7,5 +7,3 @@ export default function reduxStore() {
   })
   return store;
 }
-
-console.log(reduxStore().getState())

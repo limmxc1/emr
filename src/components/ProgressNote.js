@@ -1,15 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
 function ProgressNote({slice}) {
+    const d = new Date()
     const dispatch = useDispatch()
     const { id } = useParams()
     const [state, setState] = useState({
         progressNote: "",
-        plan: "",
         goal: "",
+        plan: "",
         discharge: "",
     })
+    
+    useEffect(() => {
+        dispatch(slice(state))
+    }, [state])
+
+
+
     function handleChange(e) {
         const val = e.target.value
         const id = e.target.id
@@ -18,9 +27,14 @@ function ProgressNote({slice}) {
             [id]: val
         }))
     }
-    function handleClick(e) {
+
+    function handleSubmit(e) {
         e.preventDefault()
-        dispatch(slice(state))
+        setState(prevState => ({
+            ...prevState,
+            submitDate: d.toLocaleDateString(),
+            submitTime: d.toLocaleTimeString()
+        }))
     }
     const sections = ["progressNote", "goal", "plan"]
     
@@ -70,7 +84,7 @@ function ProgressNote({slice}) {
                     ></input>
                     <label htmlFor="dischargeNo" className='text-xs pl-1'>No</label>
                 </div>
-            <button className='block border bg-sky-950 text-slate-300 p-1 rounded text-xs mt-2' onClick={handleClick}>Submit</button>
+            <button className='block border bg-sky-950 text-slate-300 p-1 rounded text-xs mt-2' onClick={handleSubmit}>Submit</button>
         </div>
     )
 }

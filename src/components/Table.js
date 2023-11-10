@@ -7,13 +7,12 @@ function Table() {
     const [currentPage, setCurrentPage] = useState(1)
     // const allDocs = state.doc.docNotes
     const recordsPerPage = 5
-    // const lastIndex = currentPage * recordsPerPage
-    // const firstIndex = lastIndex - recordsPerPage
+    const lastIndex = currentPage * recordsPerPage
+    const firstIndex = lastIndex - recordsPerPage
     const records = randomDocsTest.slice(firstIndex, lastIndex)
     const npage = Math.ceil(randomDocsTest.length / recordsPerPage)
     const numbers = [...Array(npage + 1).keys()].slice(1)
-    console.log(...Array(npage+1).keys())
-
+    
     function nextPage() {
         if(currentPage !== npage) {
             setCurrentPage(currentPage + 1)
