@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import randomDocsTest from '../constants/randomDocs'
 
-function Table() {
-    const state = useSelector(state => state)
+
+function Table({props}) {
+    //const state = useSelector(state => state)
+    //const allDocs = state.doc.docNotes
     const [currentPage, setCurrentPage] = useState(1)
-    // const allDocs = state.doc.docNotes
-    const recordsPerPage = 5
+    const recordsPerPage = 10
     const lastIndex = currentPage * recordsPerPage
     const firstIndex = lastIndex - recordsPerPage
-    const records = randomDocsTest.slice(firstIndex, lastIndex)
-    const npage = Math.ceil(randomDocsTest.length / recordsPerPage)
+    const records = randomDocsTest[props].slice(firstIndex, lastIndex)
+    const npage = Math.ceil(randomDocsTest[props].length / recordsPerPage)
     const numbers = [...Array(npage + 1).keys()].slice(1)
     
     function nextPage() {
@@ -28,7 +29,8 @@ function Table() {
     function changeCurrentPage(id) {
         setCurrentPage(id)
     }
-    const headers = ["Goal", "Plan", "Discharge"]
+    const headers = ["Date submitted", "Author", "Progress Note"]
+
     return (
         <div className='text-xs'>
             <table className='border border-black w-full'>
@@ -39,9 +41,9 @@ function Table() {
                     {records.map((note, index) => {
                         return (
                             <tr key={index} className='cursor-pointer' onClick={() => console.log("hello")}>
-                                <td className='border border-black'>{note.goal}</td>
-                                <td className='border border-black'>{note.plan}</td>
-                                <td className='border border-black'>{note.discharge}</td>
+                                <td className='border border-black'>{note.submitTime + ' ' + note.submitDate}</td>
+                                <td className='border border-black'>{note.author}</td>
+                                <td className='border border-black'>{note.progressNote + "\n" + note.goal + "\n" + note.plan}</td>
                             </tr>
                         )
                     })}

@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 function ProgressNote({slice}) {
     const d = new Date()
     const dispatch = useDispatch()
-    const { id } = useParams()
-    const [state, setState] = useState({
-        progressNote: "",
-        goal: "",
-        plan: "",
-        discharge: "",
-    })
+
+    const [state, setState] = useState({})
     
 
     function handleChange(e) {
@@ -62,8 +56,7 @@ function ProgressNote({slice}) {
         )
     }
     return (
-        <div className= 'pl-2 pr-2 pt-3'>
-            <div>{id}</div>
+        <div className= 'pt-3'>
             {createProgressNote(sections)}
             <p className='text-xs pt-2'>Discharge?</p>
                 <div>
