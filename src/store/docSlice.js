@@ -1,11 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import randomDocsTest from "../constants/randomDocsTest";
 
 const defaultState = {
-    docNotes: [{
-        goal: "",
-        plan: "",
-        discharge: ""
-    }]
+    docNotes: randomDocsTest.doc
 }
 
 const docSlice = createSlice({
@@ -13,7 +10,7 @@ const docSlice = createSlice({
     initialState: defaultState,
     reducers: {
         addDocDoc: (state, action) => {
-            state.docNotes.push(action.payload)
+            state.docNotes.unshift(action.payload)
         },
     }
 })

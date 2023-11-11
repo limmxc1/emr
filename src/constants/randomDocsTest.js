@@ -21,9 +21,9 @@ for (let i = 0; i < 12; i++) {
         goal: generateString(5),
         plan: generateString(5),
         discharge: generateString(5),
-        author: "Author",
-        submitTime: d.toLocaleDateString(),
-        submitDate: d.toLocaleTimeString()
+        author: "Dr otherUser",
+        submitDate: d.toLocaleDateString(),
+        submitTime: d.toLocaleTimeString(),
     })
   }
 
@@ -34,9 +34,9 @@ for (let i = 0; i < 12; i++) {
         goal: generateString(5),
         plan: generateString(5),
         discharge: generateString(5),
-        author: "Author",
-        submitTime: d.toLocaleDateString(),
-        submitDate: d.toLocaleTimeString()
+        author: "PT otherUser",
+        submitDate: d.toLocaleDateString(),
+        submitTime: d.toLocaleTimeString(),
     })
   }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 
-function ProgressNote({slice}) {
+function ProgressNote({slice, setShow}) {
     const d = new Date()
     const dispatch = useDispatch()
 
@@ -16,25 +16,22 @@ function ProgressNote({slice}) {
             [id]: val,
         }))
     }
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        setState(prevState => ({
-            ...prevState,
-            submitDate: d.toLocaleDateString(),
-            submitTime: d.toLocaleTimeString()
-        }))
-        console.log(state)
-        dispatch(slice(state))
-    }
-
+// Adds time and date to local state before dispatching to Redux store
     function addTimeAndDate() {
         setState(prevState => ({
             ...prevState,
             submitDate: d.toLocaleDateString(),
-            submitTime: d.toLocaleTimeString()
+            submitTime: d.toLocaleTimeString(),
+            author: "newUser"
         }))
     }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        setShow(false)
+        dispatch(slice(state))
+    }
+
 
     const sections = ["progressNote", "goal", "plan"]
     
@@ -82,7 +79,7 @@ function ProgressNote({slice}) {
                     ></input>
                     <label htmlFor="dischargeNo" className='text-xs pl-1'>No</label>
                 </div>
-                <button className='block border bg-sky-950 text-slate-300 p-1 rounded text-xs mt-2' onMouseDown={addTimeAndDate} onClick={handleSubmit}>Submit</button>
+                <button className='block border bg-sky-950 text-slate-300 p-1 rounded text-xs mt-2' onMouseUp={addTimeAndDate} onClick={handleSubmit}>Submit</button>
         </div>
     )
 }

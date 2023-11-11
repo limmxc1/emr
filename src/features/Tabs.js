@@ -19,10 +19,6 @@ function Tabs() {
                                 hover:border-transparent
                                 hover:rounded
                                 hover:text-white
-                                target:bg-[#FF8787] 
-                                target:border-transparent
-                                target:rounded
-                                target:text-white
                             '>
                                 {profession.header}
                             </button>

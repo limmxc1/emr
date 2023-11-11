@@ -14,9 +14,9 @@ function SidebarInfo() {
     function updateMedicalInfo() {
         professionsInTeam.map(profession => {
             const arrLength = state[profession.abbrev][`${profession.abbrev}Notes`].length-1
-            medicalInfo.goals.push(profession.header + ': ' + state[profession.abbrev][`${profession.abbrev}Notes`][arrLength].goal)
-            medicalInfo.plans.push(profession.header + ': ' + state[profession.abbrev][`${profession.abbrev}Notes`][arrLength].plan)
-            medicalInfo.discharge.push(profession.header + ': ' + state[profession.abbrev][`${profession.abbrev}Notes`][arrLength].discharge)
+            medicalInfo.goals.push(profession.header + ': ' + state[profession.abbrev][`${profession.abbrev}Notes`][0].goal)
+            medicalInfo.plans.push(profession.header + ': ' + state[profession.abbrev][`${profession.abbrev}Notes`][0].plan)
+            medicalInfo.discharge.push(profession.header + ': ' + state[profession.abbrev][`${profession.abbrev}Notes`][0].discharge)
         })
     }
     updateMedicalInfo()
@@ -34,7 +34,7 @@ function SidebarInfo() {
                         })}
                     </ol>
                     <div className='inline text-slate-300 text-[0.6rem] justify-end pr-3'>
-                        Last updated: 11/10/23 04:09pm
+                        Last updated: {state.doc.docNotes[0].submitDate + " " + state.doc.docNotes[0].submitTime}
                     </div>
                 </div>
             )

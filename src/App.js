@@ -20,7 +20,7 @@ function App() {
             <Route path="/pt" element={<CurrentView props={"pt"} />}></Route>
           </Routes>
         </div>
-        <div className='bg-slate-300 col-span-2'></div>
+
       </div>
     </Provider>
   );
