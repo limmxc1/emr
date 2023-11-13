@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import randomDocsTest from '../constants/randomDocsTest'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { selectDoc } from '../store/showDocSlice'
 
 function Table({props}) {
     const state = useSelector(state => state[props][`${props}Notes`])
+    const dispatch = useDispatch()
     const [currentPage, setCurrentPage] = useState(1)
     const recordsPerPage = 10
     const lastIndex = currentPage * recordsPerPage
@@ -28,18 +28,24 @@ function Table({props}) {
     function changeCurrentPage(id) {
         setCurrentPage(id)
     }
+
+    function currentDocToShow(e) {
+        const selected = state.filter(item => item.key === e.currentTarget.id)
+        console.log(selected)
+    }
+
     const headers = ["Date submitted", "Author", "Progress Note"]
 
     return (
         <div className='text-xs pt-2'>
             <table className='border w-full'>
                 <thead>
-                    {headers.map(header => <th className='border border-sky-950 border-[3px]'>{header}</th>)}
+                    {headers.map(header => <th className='border-sky-950 border-[3px]'>{header}</th>)}
                 </thead>
                 <tbody>
-                    {records.map((note, index) => {
+                    {records.map((note) => {
                         return (
-                            <tr key={index} className='cursor-pointer border-sky-950 border-[3px]' onClick={() => console.log("hello")}>
+                            <tr key={note.key} className='cursor-pointer border-sky-950 border-[3px]' onClick={() => dispatch(selectDoc(note.key))}>
                                 <td className='border-sky-950 border-[3px]'>{note.submitDate + ' ' + note.submitTime}</td>
                                 <td className='border-sky-950 border-[3px]'>{note.author}</td>
                                 <td className='border-sky-950 border-[3px]'>{note.progressNote + "\n" + note.goal + "\n" + note.plan}</td>

@@ -6,7 +6,16 @@ const randomDocsTest = {
 }
 
 function generateString(length) {
-    let result = ' ';
+    let result = '';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+function generateKey(length) {
+    let result = '';
     const charactersLength = characters.length;
     for ( let i = 0; i < length; i++ ) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -24,6 +33,7 @@ for (let i = 0; i < 12; i++) {
         author: "Dr otherUser",
         submitDate: d.toLocaleDateString(),
         submitTime: d.toLocaleTimeString(),
+        key: generateKey(10)
     })
   }
 
@@ -37,6 +47,7 @@ for (let i = 0; i < 12; i++) {
         author: "PT otherUser",
         submitDate: d.toLocaleDateString(),
         submitTime: d.toLocaleTimeString(),
+        key: generateKey(10)
     })
   }
 

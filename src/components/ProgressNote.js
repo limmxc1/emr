@@ -39,7 +39,7 @@ function ProgressNote({slice, setShow}) {
         return sectionsArg.map(section => {
             const sectionCapped = section.charAt(0).toUpperCase() + section.slice(1)
             return (
-                <div className='mt-2'>
+                <div>
                     <label for={section} className='block text-xs pb-1'>{sectionCapped}</label>
                     <textarea id={section} value={state.section} rows={section==="progressNote" ? "20" : "4"}onChange={handleChange} className="
                     block
@@ -53,7 +53,7 @@ function ProgressNote({slice, setShow}) {
         )
     }
     return (
-        <div className= 'pt-3'>
+        <div>
             {createProgressNote(sections)}
             <p className='text-xs pt-2'>Discharge?</p>
                 <div>
