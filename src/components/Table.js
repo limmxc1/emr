@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectDoc } from '../store/showDocSlice'
+import { deleteDocDoc } from '../store/docSlice'
 
 function Table({props}) {
     const state = useSelector(state => state[props][`${props}Notes`])
@@ -29,12 +30,13 @@ function Table({props}) {
         setCurrentPage(id)
     }
 
-    function currentDocToShow(e) {
-        const selected = state.filter(item => item.key === e.currentTarget.id)
-        console.log(selected)
+    function deleteDoc(e) {
+        e.stopPropagation();
+        dispatch(deleteDocDoc(e.target.parentElement.parentElement.dataset.key))
     }
 
-    const headers = ["Date submitted", "Author", "Progress Note"]
+
+    const headers = ["Date submitted", "Author", "Progress Note", "Actions"]
 
     return (
         <div className='text-xs pt-2'>
@@ -45,10 +47,14 @@ function Table({props}) {
                 <tbody>
                     {records.map((note) => {
                         return (
-                            <tr key={note.key} className='cursor-pointer border-sky-950 border-[3px]' onClick={() => dispatch(selectDoc(note.key))}>
+                            <tr data-key={note.key} className='cursor-pointer border-sky-950 border-[3px]' onClick={() => dispatch(selectDoc(note.key))}>
                                 <td className='border-sky-950 border-[3px]'>{note.submitDate + ' ' + note.submitTime}</td>
                                 <td className='border-sky-950 border-[3px]'>{note.author}</td>
                                 <td className='border-sky-950 border-[3px]'>{note.progressNote + "\n" + note.goal + "\n" + note.plan}</td>
+                                <td className='border-sky-950 border-[3px]'>
+                                    <button>Edit</button>
+                                    <button onClick={deleteDoc}>Delete</button>
+                                </td>
                             </tr>
                         )
                     })}

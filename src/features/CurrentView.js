@@ -16,7 +16,7 @@ function CurrentView({props}) {
 
     function showNoteOrNot() {
       if (show) {
-        return <ProgressNote slice={whatIsProps()} setShow={setShow} className="pl-2"/>
+        return <ProgressNote slice={whatIsProps()} setShow={setShow} handleClick={handleClick} className="pl-2"/>
       } else {
         return
       }
@@ -26,28 +26,33 @@ function CurrentView({props}) {
         if (whichButton === "Create new note") setShow(true)
         else if (whichButton === "Delete note") setShow(false)
     }
-    function showDocOrNot(e) {
-        if (state.showDoc.selectedDoc) {
+    function showDocOrNot() {
+        if (state.showDoc.selectedDoc && state.doc.docNotes.some(note => note.key === state.showDoc.selectedDoc)) {
             const selected = state.doc.docNotes.filter(note => note.key===state.showDoc.selectedDoc)[0]
-            return <div className='text-black text-xs'>
-                <p>{selected.author}</p>
-                <p>{selected.submitDate + " " + selected.submitTime}</p>
-                <p>{selected.progressNote}</p>
-                <p>{selected.goal}</p>
-                <p>{selected.plan}</p>
-            </div>
+            return (
+                <div className='text-black text-xs pt-2 px-3'>
+                    <p>{selected.author}</p>
+                    <p>{selected.submitDate + " " + selected.submitTime}</p>
+                    <p>{selected.progressNote}</p>
+                    <p>{selected.goal}</p>
+                    <p>{selected.plan}</p>
+                </div>
+            )
         }
-
-        else if (!state.showDoc.selectedDoc) return
+        else return
     }
 
     return (
         <div>
-            <Table props={props}/>
-            <button onClick={handleClick} className='text-xs border p-1 border-transparent bg-cyan-500 rounded hover:bg-[#FF8787] hover:text-white mr-2'>Create new note</button>
-            <button onClick={handleClick} className='text-xs border p-1 border-transparent bg-cyan-500 rounded hover:bg-[#FF8787] hover:text-white mr-2'>Delete note</button>
-            <div className='grid grid-cols-2 h-screen pt-3'>
-                {showDocOrNot()}
+            <div className='grid grid-cols-2 border-black border'>
+                <div className={`${state.showDoc.selectedDoc ? "col-span-1" : "col-span-2"}`}>
+                    <Table props={props} />
+                </div>
+                <div className='col-span-1'>
+                    {showDocOrNot()}
+                </div>
+            </div>
+            <button onClick={handleClick} className='text-xs border p-1 border-transparent bg-cyan-500 rounded hover:bg-[#FF8787] hover:text-white mr-2'>Create new note</button>            <div className='grid grid-cols-2 h-screen pt-3'>
                 {show && showNoteOrNot()} {/*Whether which slice it updates should depend on the profession of the user. default = doc*/}
             </div>
         </div>

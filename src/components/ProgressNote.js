@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
+import { generateKey } from '../constants/randomDocsTest';
 
-function ProgressNote({slice, setShow}) {
+function ProgressNote({slice, setShow, handleClick}) {
     const d = new Date()
     const dispatch = useDispatch()
 
@@ -17,12 +18,13 @@ function ProgressNote({slice, setShow}) {
         }))
     }
 // Adds time and date to local state before dispatching to Redux store
-    function addTimeAndDate() {
+    function addTimeDateKey() {
         setState(prevState => ({
             ...prevState,
             submitDate: d.toLocaleDateString(),
             submitTime: d.toLocaleTimeString(),
-            author: "newUser"
+            author: "newUser",
+            key: generateKey(10)
         }))
     }
 
@@ -31,7 +33,6 @@ function ProgressNote({slice, setShow}) {
         setShow(false)
         dispatch(slice(state))
     }
-
 
     const sections = ["progressNote", "goal", "plan"]
     
@@ -79,7 +80,9 @@ function ProgressNote({slice, setShow}) {
                     ></input>
                     <label htmlFor="dischargeNo" className='text-xs pl-1'>No</label>
                 </div>
-                <button className='block border bg-sky-950 text-slate-300 p-1 rounded text-xs mt-2' onMouseUp={addTimeAndDate} onClick={handleSubmit}>Submit</button>
+                <button className='block border bg-sky-950 text-slate-300 p-1 rounded text-xs mt-2 mr-2 inline' onMouseUp={addTimeDateKey} onClick={handleSubmit}>Submit</button>
+                <button onClick={handleClick} className='block border bg-sky-950 text-slate-300 p-1 rounded inline text-xs mt-2'>Delete note</button>
+
         </div>
     )
 }

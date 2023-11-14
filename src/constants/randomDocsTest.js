@@ -26,7 +26,7 @@ function generateKey(length) {
 // Generate random Doc docs
 for (let i = 0; i < 12; i++) { 
     randomDocsTest.doc.push({
-        progressNote: generateString(3),
+        progressNote: generateString(20),
         goal: generateString(5),
         plan: generateString(5),
         discharge: generateString(5),
@@ -40,7 +40,7 @@ for (let i = 0; i < 12; i++) {
   // Generate random PT docs
   for (let i = 0; i < 2; i++) { 
     randomDocsTest.pt.push({
-        progressNote: generateString(3),
+        progressNote: generateString(20),
         goal: generateString(5),
         plan: generateString(5),
         discharge: generateString(5),
@@ -52,3 +52,4 @@ for (let i = 0; i < 12; i++) {
   }
 
 export default randomDocsTest
+export { generateKey }

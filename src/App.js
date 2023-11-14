@@ -20,7 +20,6 @@ function App() {
             <Route path="/pt" element={<CurrentView props={"pt"} />}></Route>
           </Routes>
         </div>
-
       </div>
     </Provider>
   );
